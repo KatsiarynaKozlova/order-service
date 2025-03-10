@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class OrderService {
     public Mono<Order> updateOrderStatus(Long id, OrderStatus status) {
         return getByIdLockedOrElseThrow(id).flatMap(order -> {
             order.setStatus(status);
+            order.setUpdatedAt(LocalDateTime.now());
             return orderRepository.save(order);
         });
     }

@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Table(name = "orders")
 @NoArgsConstructor
@@ -27,6 +27,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private BigDecimal totalPrice;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
