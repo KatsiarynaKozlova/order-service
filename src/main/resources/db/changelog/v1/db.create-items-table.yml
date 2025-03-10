@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Katsiaryna
+      changes:
+        - createTable:
+            tableName: items
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: order_id
+                  type: bigint
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: quantity
+                  type: integer
+                  defaultValueNumeric: 1
+              - column:
+                  name: price
+                  type: decimal

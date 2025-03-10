@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Katsiaryna
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: driver_id
+                  type: bigint
+              - column:
+                  name: pickup_location
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: delivery_location
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                  defaultValue: PENDING
+              - column:
+                  name: total_price
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: driver_id
+                  value: 1
+              - column:
+                  name: pickup_location
+                  value: a1s2d3fr
+              - column:
+                  name: delivery_location
+                  value: f43f43f43
+              - column:
+                  name: total_price
+                  value: 123.23
