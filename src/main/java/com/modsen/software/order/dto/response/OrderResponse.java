@@ -3,7 +3,7 @@ package com.modsen.software.order.dto.response;
 import com.modsen.software.order.model.OrderStatus;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public record OrderResponse(
         Long id,
@@ -13,6 +13,6 @@ public record OrderResponse(
         String deliveryLocation,
         OrderStatus status,
         BigDecimal totalPrice,
-        Timestamp createdAt,
-        Timestamp updatedAt) {
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt) {
 }
