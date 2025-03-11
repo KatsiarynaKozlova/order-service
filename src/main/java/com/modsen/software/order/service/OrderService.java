@@ -8,6 +8,7 @@ import com.modsen.software.order.repository.OrderRepository;
 import com.modsen.software.order.util.ExceptionMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final ItemService itemService;
 
     public Mono<Order> getOrderById(Long id) {
         return getOrderByIdOrELseThrown(id);
@@ -37,11 +39,18 @@ public class OrderService {
         });
     }
 
+
     private Mono<Order> getOrderByIdOrELseThrown(Long id) {
         return orderRepository.findById(id)
                 .switchIfEmpty(Mono.error(
                         new OrderNotFoundException(String.format(ExceptionMessages.ORDER_NOT_FOUND_EXCEPTION, id))
                 ));
+    }
+
+    @Transactional
+    public Mono<Void> deleteOrderById(Long id) {
+        return itemService.deleteAllItemsFromOrder(id)
+                .and(orderRepository.deleteById(id));
     }
 
     private Mono<Order> getByIdLockedOrElseThrow(Long id) {
