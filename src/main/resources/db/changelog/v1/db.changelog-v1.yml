@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db.create-orders-table.yml
+      relativeToChangelogFile: true
+  - include:
+      file: db.create-items-table.yml
+      relativeToChangelogFile: true

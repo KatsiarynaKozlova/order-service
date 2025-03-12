@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+  - changeSet:
+      id: 1
+      author: Katsiaryna
+  - include:
+      file: v1/db.changelog-v1.yml
+      relativeToChangelogFile: true
